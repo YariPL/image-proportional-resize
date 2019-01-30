@@ -17,13 +17,12 @@
             margin: auto;
         }
         img {
-        	width: 609px;
-        	height: 405px;
+        	
         }
 	</style>
 </head>
 <body>
-		<img class="center fit" src="m.jpg" alt="">
+		<img class="center fit" src="m.jpeg" alt="">
 	<script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -40,7 +39,17 @@
   * @return {Object} { width, height }
   */
   console.log($('img').width());
- 
+ 	window.onload = function() {
+ 		 var ratio = calculateAspectRatioFit($('img').width(),$('img').height(), $(window).width(), $(window).height());
+	function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
+
+	    var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+
+	    return { width: srcWidth*ratio, height: srcHeight*ratio };
+	 }
+    console.log(ratio);
+    $('img').css(ratio);
+ 	}
 
 	$(window).on('resize', function(){
 		 var ratio = calculateAspectRatioFit($('img').width(),$('img').height(), $(window).width(), $(window).height());
