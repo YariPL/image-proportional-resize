@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		 * {
+            padding: 0;
+            margin: 0;
+        }
+        .fit { /* set relative picture size */
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .center {
+            display: block;
+            margin: auto;
+        }
+        img {
+        	width: 609px;
+        	height: 405px;
+        }
+	</style>
+</head>
+<body>
+		<img class="center fit" src="m.jpg" alt="">
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+	<script>
+     /**
+  * Conserve aspect ratio of the original region. Useful when shrinking/enlarging
+  * images to fit into a certain area.
+  *
+  * @param {Number} srcWidth width of source image
+  * @param {Number} srcHeight height of source image
+  * @param {Number} maxWidth maximum available width
+  * @param {Number} maxHeight maximum available height
+  * @return {Object} { width, height }
+  */
+  console.log($('img').width());
+ 
+
+	$(window).on('resize', function(){
+		 var ratio = calculateAspectRatioFit($('img').width(),$('img').height(), $(window).width(), $(window).height());
+	function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
+
+	    var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+
+	    return { width: srcWidth*ratio, height: srcHeight*ratio };
+	 }
+    console.log(ratio);
+    $('img').css(ratio);
+	});
+
+</script>
+</body>
+</html>
